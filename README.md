@@ -21,4 +21,6 @@ Notes: As with anything please use this responsibly. This class is not fool proo
 
 License: WTFPL
 
-Like it? Buy me a beer, paypal: admin[at]feathur.com
+Like it? Buy me a beer:
+
+<a href='https://pledgie.com/campaigns/31363'><img alt='Click here to lend your support to: Development Funds and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31363.png?skin_name=chrome' border='0' ></a>
