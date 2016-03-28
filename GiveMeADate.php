@@ -30,11 +30,11 @@ class GiveMeADate extends \DateTime {
 				$return['day'] = $matches[1];
 			}
 			
-			if(!isset($return['month']) &&isset($matches[2])){
+			if(!isset($return['month']) && isset($matches[2])){
 				$return['month'] = $matches[2];
 			}
 			
-			if(!isset($return['year']) &&isset($matches[3])){
+			if(!isset($return['year']) && isset($matches[3])){
 				$return['year'] = $matches[3];
 			}
 		}
@@ -43,7 +43,7 @@ class GiveMeADate extends \DateTime {
 		// Match dates: Sunday 1st March 2015; Sunday, 1 March 2015; Sun 1 Mar 2015; Sun-1-March-2015
 		$pattern = '(?:(?:'.implode('|', array_merge($this->days, $this->short_days)).')';
 		$pattern .= '[ ,\-_\/]*)?([0-9]?[0-9])[ ,\-_\/]*(?:'.implode('|', $this->number_extensions) . ')';
-		$pattern .= '?[ ,\-_\/]*('.implode('|', array_merge($this->months, $this->short_months)).')[ ,\-_\/]+([0-9]{4})';
+		$pattern .= '?[ ,\-_\/]*('.implode('|', array_merge(array_keys($this->months), array_keys($this->short_months))).')[ ,\-_\/]+([0-9]{4})';
 		if(preg_match('/'.$pattern.'/i', $string, $matches ) === 1){
 			if(!isset($return['day']) && isset($matches[1])){
 				$return['day'] = $matches[1];
@@ -63,7 +63,7 @@ class GiveMeADate extends \DateTime {
 		}
 		
 		// Match dates: March 1st 2015; March 1 2015; March-1st-2015
-		$pattern = '('.implode('|', array_merge($this->months, $this->short_months)) . ')';
+		$pattern = '('.implode('|', array_merge(array_keys($this->months), array_keys($this->short_months))) . ')';
 		$pattern .= '[ ,\-_\/]*([0-9]?[0-9])[ ,\-_\/]*(?:'.implode('|', $this->number_extensions).')?[ ,\-_\/]+([0-9]{4})';
 		if(preg_match('/'.$pattern.'/i', $string, $matches ) === 1){
 			if(!isset($return['month']) && isset($matches[1])){
@@ -143,7 +143,7 @@ class GiveMeADate extends \DateTime {
 				$return['year'] = '20'.$return['year'];
 			}
 		}
-		
+
 		if(count($return) === 3) {
 			$this->createFromFormat('Y-m-d', $return['year'].'-'.$return['month'].'-'.$return['day']);
 		}
